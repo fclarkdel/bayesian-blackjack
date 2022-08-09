@@ -1,0 +1,59 @@
+﻿@page "/"
+
+@inject IPlayerService PlayerService
+
+<PageTitle>Index</PageTitle>
+
+<MudGrid Justify="Justify.Center">
+	<MudItem sm="12" md="6">
+		@*
+			Distribution Chart
+		*@
+		<MudPaper Elevation="10"
+				  Class="mud-theme-secondary
+						 pa-4
+						 my-4">
+			<MudPaper Elevation="10"
+					  Class="mud-theme-tertiary
+							 pa-4
+							 mb-4">
+				<MudText Typo="Typo.h6" Class="	">
+					Binomial Distribution
+				</MudText>
+				<MudText Typo="Typo.body2">
+					X = number of times that a hand busts out of 25 repeated draw scenarios.
+				</MudText>
+			</MudPaper>
+			<MudPaper Elevation="10"
+					  Class="mud-theme-tertiary">
+				<DistributionChartComponent PlayerService="@PlayerService" />
+			</MudPaper>
+		</MudPaper>
+	</MudItem>
+	@*
+		Player Hand
+	*@
+	<MudItem sm="12" md="6">
+		<MudPaper Elevation="10"
+				  Class="mud-theme-secondary
+						 pa-4
+						 my-4">
+			<MudPaper Elevation="10"
+					  Class="mud-theme-tertiary
+							 pa-4
+							 mb-4">
+				<MudText Typo="Typo.h6">
+					Player Hand
+				</MudText>
+				<MudText Typo="Typo.body2">
+					Distribution draw scenario.
+				</MudText>
+			</MudPaper>
+			<PlayerHandComponent PlayerService="@PlayerService" />
+		</MudPaper>
+	</MudItem>
+</MudGrid>
+
+@code
+{
+}

@@ -1,0 +1,41 @@
+﻿@implements IDisposable
+
+<MudPaper Elevation="10"
+		  Class="mud-theme-tertiary
+				 overflow-hidden
+				 overflow-x-auto
+				 d-flex
+				 justify-start
+			     gap-4
+				 pa-4">
+	<AddCardComponent PlayerService="PlayerService" />
+	@foreach(Card card in _hand.View())
+	{
+		<CardComponent PlayerService="PlayerService" Suit="@card.Suit" Rank="@card.Rank" />
+	}
+</MudPaper>
+
+@code
+{
+	[Parameter]
+	public IPlayerService? PlayerService { get; set; }
+
+	private IHand _hand { get; set; } = new Hand();
+
+	protected override void OnInitialized()
+	{
+		if(PlayerService != null)
+		{
+			_hand = PlayerService.Player.Hand;
+			PlayerService.OnChange += StateHasChanged;	
+		}
+	}
+
+	public void Dispose()
+	{
+		if(PlayerService != null)
+		{
+			PlayerService.OnChange -= StateHasChanged;
+		}
+	}
+}

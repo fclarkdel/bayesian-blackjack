@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32728.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BayesianBlackjack.Interface", "BayesianBlackjack.Interface\BayesianBlackjack.Interface.csproj", "{F890897A-C46C-4176-8C80-FC7497FF51B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BayesianBlackjack.Application", "BayesianBlackjack.Application\BayesianBlackjack.Application.csproj", "{C05781FC-B865-41ED-9AD2-157E29A7B17A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F890897A-C46C-4176-8C80-FC7497FF51B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F890897A-C46C-4176-8C80-FC7497FF51B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F890897A-C46C-4176-8C80-FC7497FF51B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F890897A-C46C-4176-8C80-FC7497FF51B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05781FC-B865-41ED-9AD2-157E29A7B17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05781FC-B865-41ED-9AD2-157E29A7B17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05781FC-B865-41ED-9AD2-157E29A7B17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05781FC-B865-41ED-9AD2-157E29A7B17A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E304C39-F7E3-46D3-9B0C-332EB1F9602F}
+	EndGlobalSection
+EndGlobal

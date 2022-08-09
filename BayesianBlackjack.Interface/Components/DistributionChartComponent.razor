@@ -1,0 +1,145 @@
+﻿@using ApexCharts
+<ApexChart TItem="Result"
+		   Height="750"
+		   XAxisType="XAxisType.Numeric"
+		   Options="_options"
+		   @ref=_chart>
+	<ApexPointSeries TItem="Result"
+					 Items="results"
+					 Name="P(x)"
+					 SeriesType="SeriesType.Histogram"
+					 XValue="@(e => e.NumOfSuccesses)"
+					 YValue="@(e => e.ProbOfSuccesses)"
+					 OrderByDescending="e=>e.X"
+					 Color="@_barColor"/>
+</ApexChart>
+
+@code
+{
+	[Parameter]
+	public IPlayerService? PlayerService { get; set; }
+	
+	protected override void OnInitialized()
+	{
+		if(PlayerService != null)
+		{
+			PlayerService.OnChange += UpdateChartSeries;
+		}
+	}
+
+	private ApexChart<Result>? _chart;
+	private List<Result> results = new();
+
+	private async void UpdateChartSeries()
+	{
+		if(PlayerService != null && _chart != null)
+		{
+			List<Result> temp = PlayerService.Player.BinomialDistribution();
+			results.Clear();
+			foreach(Result result in temp)
+			{
+				results.Add(result);
+			}
+			await _chart.UpdateSeriesAsync(true);
+		}
+	}
+
+	private static readonly string _barColor = "#FFAB40";
+	private static readonly string _textColor = "#ECEFF1";
+	private static readonly string _textColorContrast = "#546E7A";
+
+	private ApexChartOptions<Result> _options = new()
+	{
+		
+		Chart = new()
+		{
+			Toolbar = new()
+			{
+				Show = false
+			},
+			Zoom = new()
+			{
+				Enabled = false
+			}
+		},
+		States = new()
+		{
+			Active = new()
+			{
+				Filter = new()
+				{
+					Type = "none"
+				}
+			}
+		},
+		Tooltip = new()
+		{
+			Enabled = true,
+			Theme = "546E7A",
+			Style = new()
+			{
+				FontSize = "12px"
+			}
+		},
+		Xaxis = new()
+		{
+			AxisBorder = new()
+			{
+				Show = false
+			},
+			AxisTicks = new()
+			{
+				Show = false
+			},
+			DecimalsInFloat = 0,
+			Labels = new()
+			{
+				Show = true,
+				Style = new()
+				{
+					FontSize = "12px",
+					Colors = new(_textColor)
+				}
+			},
+			Title = new()
+			{
+				Text = "x",
+				Style = new()
+				{
+					FontSize = "16px",
+					Color = new(_textColor)
+				}
+			},
+			TickAmount = 25,
+		},
+		Yaxis = new()
+		{
+			new()
+			{
+				AxisTicks = new()
+				{
+					Show = false
+				},
+				DecimalsInFloat = 2,
+				Labels = new()
+				{
+					Show = true,
+					Style = new()
+					{
+						FontSize = "12px",
+						Colors = new(_textColor)
+					}
+				},
+				Title = new()
+				{
+					Text = "P(x)",
+					Style = new()
+					{
+					FontSize = "16px",
+					Color = new(_textColor)
+					}
+				}
+			}
+		}
+	};
+}

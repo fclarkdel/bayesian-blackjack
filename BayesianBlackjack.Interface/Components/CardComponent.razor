@@ -1,0 +1,53 @@
+﻿<MudPaper Width="250px"
+		  Height="350px"
+		  Elevation="10"
+		  Class="mud-theme-tertiary-lighten
+				 d-flex
+				 flex-column
+			     flex-none
+				 flex-space-evenly
+				 justify-space-evenly
+				 align-center">
+	<MudText Class="mt-12">
+		@_suit
+	</MudText>
+	<MudText Typo="Typo.h1"
+			 Class="mt-n12">
+		@_rank
+	</MudText>
+	<MudButton OnClick="@OnClick"
+			   Variant="Variant.Outlined"
+			   Color="Color.Info"
+			   Class="mt-6
+					  mb-n8
+					  mud-elevation-5">
+		Delete
+	</MudButton>
+</MudPaper>
+
+@code
+{
+	[Parameter]
+	public IPlayerService? PlayerService { get; set; }
+	[Parameter]
+	public Card.SuitEnum Suit { get; set; }
+	[Parameter]
+	public Card.RankEnum Rank { get; set; }
+
+	private string _suit { get; set; } = string.Empty;
+	private string _rank { get; set; } = string.Empty;
+
+	protected override void OnParametersSet()
+	{
+		_suit = MapSuitToIcon.Get(Suit);
+		_rank = MapRankToString.Get(Rank);
+	}
+
+	private void OnClick()
+	{
+		if(PlayerService != null)
+		{
+			PlayerService.RemoveCard(new Card(Suit, Rank));
+		}
+	}
+}

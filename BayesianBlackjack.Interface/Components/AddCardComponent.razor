@@ -1,0 +1,72 @@
+﻿<MudPaper Width="250px"
+		  Height="350px"
+		  Elevation="10"
+		  Class="mud-theme-tertiary-lighten
+				 flex-none
+				 pa-4">
+	<MudGrid Spacing="0" Justify="Justify.Center">
+		<MudItem xs="12"
+				 Class="">
+			<MudSelect T="@Card.SuitEnum"
+					   Label="Suit"
+					   Variant="Variant.Outlined"
+					   AnchorOrigin="Origin.BottomCenter"
+					   @bind-Value="@_suit"
+					   Immediate="true"
+					   Dense="true"
+					   Class="mb-4">
+				@foreach (Card.SuitEnum suit in Card.PossibleSuits())
+				{
+					<MudSelectItem T="@Card.SuitEnum" Value="@suit">
+					</MudSelectItem>
+				}
+			</MudSelect>
+		</MudItem>
+		<MudItem xs="12"
+				 Class="">
+			<MudSelect T="@Card.RankEnum"
+					   Label="Rank"
+					   Variant="Variant.Outlined"
+					   AnchorOrigin="Origin.BottomCenter"
+					   @bind-Value="@_rank"
+					   Immediate="true"
+					   Dense="true"
+					   Class="mb-4">
+				@foreach(Card.RankEnum rank in Card.PossibleRanks())
+				{
+					<MudSelectItem T="@Card.RankEnum"
+								   Value="@rank" />
+				}
+			</MudSelect>
+		</MudItem>
+		<MudItem xs="0"
+				 Class="mt-16">
+			<MudButton OnClick="@OnClick"
+					   Variant="Variant.Filled"
+					   Color="Color.Info"
+					   Class="mt-16
+						      px-8
+							  mud-elevation-5">
+				Add
+			</MudButton>
+		</MudItem>
+	</MudGrid>
+</MudPaper>
+
+@code
+{
+	[Parameter]
+	public IPlayerService? PlayerService { get; set; }
+
+	private Card.SuitEnum _suit { get; set; }
+	private Card.RankEnum _rank { get; set; }
+
+	private void OnClick()
+	{
+		if(PlayerService != null)
+		{
+			PlayerService.AddCard(new Card(_suit, _rank));
+		}
+	}
+}
+// modified

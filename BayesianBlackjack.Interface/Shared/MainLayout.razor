@@ -1,0 +1,34 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="Theme.MudTheme" DefaultScrollbar="true" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+	<MudAppBar Dense="true"
+			   Elevation="10">
+		<MudGrid Justify="Justify.FlexStart"
+				 Spacing="0">
+			<MudItem Class="mr-2 ml-n4">
+				<MudIcon Icon="@Icons.TwoTone.Analytics"
+						 Size="Size.Large"
+						 Color="Color.Info"
+						 Class="mt-1">
+				</MudIcon>
+			</MudItem>
+			<MudItem Class="my-auto">
+				<MudText Typo="Typo.h4"
+					     Class="">
+					Bayesian Blackjack
+				</MudText>
+			</MudItem>
+		</MudGrid>
+	</MudAppBar>
+	<MudMainContent Class="overflow-hidden pa-16">
+		@Body
+	</MudMainContent>
+</MudLayout>
+
+@code
+{
+}
