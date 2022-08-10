@@ -1,1 +1,1 @@
-# BayesianBlackjack
+# Bayesian Blackjack
